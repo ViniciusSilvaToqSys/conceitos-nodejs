@@ -48,9 +48,9 @@ app.put("/repositories/:id", (request, response) => {
   const { id } = request.params;
   const { title, url, techs} = request.body;
 
-  const repositoryIndex = repositories.findIndex(repository => respository.id == id);
+  const repositoryIndex = repositories.findIndex(repository => repository.id == id);
   
-  if (repositoryIndex < 0){
+  if (repositoryIndex === -1){
     return response.status(400).json({error:"repository not found"})
   }
 
@@ -86,7 +86,7 @@ app.post("/repositories/:id/like", (request, response) => {
 
   const repositoryIndex = repositories.findIndex(repository => repository.id == id);
 
-  if (repositoryIndex == -1){
+  if (repositoryIndex === -1){
     return response.status(400).json({error: "Repository not exists."});
   }
 
